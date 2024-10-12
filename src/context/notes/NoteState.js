@@ -21,6 +21,51 @@ const NoteState = (props) => {
           "date": "2024-10-08T20:01:30.902Z",
           "__v": 0
         },
+        {
+          "_id": "14758f9ac5udt05760u9794f",
+          "user": "9364f89a7935ahd56aa1d028",
+          "title": "My second title",
+          "description": "This is second description",
+          "tag": "public",
+          "date": "2024-10-08T20:01:30.902Z",
+          "__v": 0
+        },
+        {
+          "_id": "14758f9ac5udt05760u9794f",
+          "user": "9364f89a7935ahd56aa1d028",
+          "title": "My second title",
+          "description": "This is second description",
+          "tag": "public",
+          "date": "2024-10-08T20:01:30.902Z",
+          "__v": 0
+        },
+        {
+          "_id": "14758f9ac5udt05760u9794f",
+          "user": "9364f89a7935ahd56aa1d028",
+          "title": "My second title",
+          "description": "This is second description",
+          "tag": "public",
+          "date": "2024-10-08T20:01:30.902Z",
+          "__v": 0
+        },
+        {
+          "_id": "14758f9ac5udt05760u9794f",
+          "user": "9364f89a7935ahd56aa1d028",
+          "title": "My second title",
+          "description": "This is second description",
+          "tag": "public",
+          "date": "2024-10-08T20:01:30.902Z",
+          "__v": 0
+        },
+        {
+          "_id": "14758f9ac5udt05760u9794f",
+          "user": "9364f89a7935ahd56aa1d028",
+          "title": "My second title",
+          "description": "This is second description",
+          "tag": "public",
+          "date": "2024-10-08T20:01:30.902Z",
+          "__v": 0
+        },
     ]
     const [notes, setNotes] = useState(notesInitial)
     
