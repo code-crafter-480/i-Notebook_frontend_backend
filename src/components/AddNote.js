@@ -28,20 +28,20 @@ const AddNote = () => {
                     <label htmlFor="description" className="form-label">Description</label>
                     <input type="text" className="form-control" id="description" name='description' onChange={onChange} />
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={handleClick}>Submit</button>
+                <button type="submit" className="btn btn-primary" onClick={handleClick}>Add Note</button>
             </form>
         </div>
 
 
-    //    <div className='container'>              // 👉 Remove in #61 for seperating this...
+    //    <div className='container'>              // ➡️ Remove in #61 for seperating this...
     //   <h2>Your Notes</h2>
-    //   {/* 👉 Add this #60 
+    //   {/* ➡️ Add this #60 
     //   {notes.map((note) => {
     //     return note.title;
     //   })} 
     //   </div> 
 
-    // <Notes />            {/* 👉 Add this #61 */ }
+    // <Notes />            {/* Add this #61 */ }
 
   )
 }
