@@ -5,8 +5,8 @@ import noteContext from "../context/notes/noteContext"
 const NoteItem = (props) => {
     const {note} = props;
 
-    const context = useContext(noteContext)      // 👉 Add          
-    const {deleteNote} = context;               //  👉 Add
+    const context = useContext(noteContext)      // Add          
+    const {deleteNote} = context;               //  Add
 
     return (
         <div className='col-md-3'>

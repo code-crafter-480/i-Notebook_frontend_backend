@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 const Navbar = () => {
     // ADD this #59
     let location = useLocation()
-    useEffect(() => {                        // 👉 Ata only shudu print korar kaje lag6e... ata delete kore dileo cholbe...
+    useEffect(() => {                        //  Ata only shudu print korar kaje lag6e... ata delete kore dileo cholbe...
         // console.log(location)
         console.log(location.pathname)
     }, [location])

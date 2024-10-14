@@ -1,11 +1,14 @@
 const connectToMongo = require('./db')
 const express = require('express')
+var cors = require("cors")          // 👉 Add this in #65
 
 connectToMongo()
 
 const app = express()
 // const port = 3000         // Our react app will run this port...
 const port = 5000
+
+app.use(cors())                // 👉 Add this in #65
 
 
 //  Request.body korte gele amader akta middleware lage... and 'thunderclient' a body object ta type korte hobe...
