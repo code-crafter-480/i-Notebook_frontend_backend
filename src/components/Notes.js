@@ -8,7 +8,7 @@ const Notes = () => {
   const [note, setNote] = useState({id: "", etitle:"", edescription:"", etag:""})        //  ADD,   aigulo uporei defined korte hobe...
 
   const context = useContext(noteContext)
-  const { notes, addNote, getNotes, editNote } = context;        // 👉 Pull 'editNote' 
+  const { notes, addNote, getNotes, editNote } = context;        //   Pull 'editNote' 
 
   useEffect(() => {
     getNotes()
@@ -25,9 +25,9 @@ const Notes = () => {
 
   
   const ref = useRef(null)
-  const refClose = useRef(null)               // 👉 Add
+  const refClose = useRef(null)               //   Add
 
-  // 👉 Changes
+  //   Changes
   const handleClick = (e) => {                 
     console.log("Updating the note...", note)
     editNote(note.id, note.etitle, note.edescription, note.etag)
@@ -75,13 +75,16 @@ const Notes = () => {
             </div>
             <div className="modal-footer">
               <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button onClick={handleClick} type="button" className="btn btn-primary">Update Note</button>    {/* Add 'onclick' */}
+              <button disabled={note.etitle.length<3 || note.edescription.length<5} onClick={handleClick} type="button" className="btn btn-primary">Update Note</button>      {/* Add 'onclick' */}       {/* 👉 disabled={note.title.length<3 || note.description.length<5} */}
             </div>
           </div>
         </div>
       </div>
       <div className='row my-3'>
         <h2>Your Notes</h2>
+        <div className='container mx-2'>
+          {notes.length === 0 && 'No notes to display'}
+        </div>
         {notes.map((note) => {
           // return note.title;
           return <NoteItem key={note._id} note={note} updateNote={updateNote} />       //  Add 'updateNote'

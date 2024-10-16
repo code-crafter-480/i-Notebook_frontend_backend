@@ -62,7 +62,7 @@ const NoteState = (props) => {
         },
      ]  */
 
-    const notesInitial = []
+    const notesInitial = [] 
     const [notes, setNotes] = useState(notesInitial)
 
 
@@ -94,19 +94,19 @@ const NoteState = (props) => {
           },
           body: JSON.stringify({title, description, tag})
         })
-        const json = await response.json()
-        console.log(json)
+        const note = await response.json()
+        console.log("Adding a new note")
+        // console.log(json)
 
-      console.log("Adding a new note")
-      const note = {
-        "_id": "1475d8f9ac5udt05760u9794f",
-        "user": "9364f89a7935ahd56aa1d028",
-        "title": title,
-        "description": description,
-        "tag": tag,
-        "date": "2024-10-08T20:01:30.902Z",
-        "__v": 0
-      }
+      // const note = {
+      //   "_id": "1475d8f9ac5udt05760u9794f",
+      //   "user": "9364f89a7935ahd56aa1d028",
+      //   "title": title,
+      //   "description": description,
+      //   "tag": tag,
+      //   "date": "2024-10-08T20:01:30.902Z",
+      //   "__v": 0
+      // }
       setNotes(notes.concat(note))
     }
 
@@ -141,7 +141,7 @@ const NoteState = (props) => {
       // ➡️ API Call
       // const response = await fetch(url, {
       const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
-        method: 'PUT',              // 📌 API te ata PUT a6e...
+        method: 'PUT',              
         headers: {
           'Content-Type': 'application/json' ,
           'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwNGY4OWE3Mzk3YWJjOTZhYTFkMjAzIn0sImlhdCI6MTcyODQxNDEwM30.FHfr1xH92ubrTm6HrnJmMYefBZTvgjEqVyxamQJ8YDw'
@@ -152,7 +152,7 @@ const NoteState = (props) => {
       const json = response.json()
     
 
-      // Logic to edit in client-side           // 👉 Edit this logic in #67(because edit korar por 'Update Note' korle direct show kor6e na, akbar page take reload korle tarpor changes ta show kor6e...  ) ...  React a amra direct aivabe state change korte pari na, aijonno new Notes banate hobe...
+      // Logic to edit in client-side           //   Edit this logic in #67(because edit korar por 'Update Note' korle direct show kor6e na, akbar page take reload korle tarpor changes ta show kor6e...  ) ...  React a amra direct aivabe state change korte pari na, aijonno new Notes banate hobe...
       let newNotes = JSON.parse(JSON.stringify(notes))
       for (let index = 0; index < newNotes.length; index++) {
         const element = notes[index]
