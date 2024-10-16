@@ -28,9 +28,9 @@ const Login = () => {
             // Redirect korar jonno useHistory hook er sahajjo nebo...
             navigate("/")
         }
-        else {
-            alert("Invalid Credentials")
-        }
+        // else {
+        //     alert("Invalid Credentials")
+        // }
     }
 
     const onChange = (e) => {

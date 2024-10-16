@@ -18,6 +18,8 @@ router.post('/createuser',[          //  Add this array...
 
 ], async(req, res)=>{
 
+    let success = false             // 👉 Add this
+
     // console.log(req.body)
     // const user = User(req.body)
     // user.save()
@@ -26,15 +28,15 @@ router.post('/createuser',[          //  Add this array...
     // ➡️ If there are errors, return Bad request and the errors
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
-        return res.status(400).json({errors: errors.array()})
+        return res.status(400).json({success, errors: errors.array()})       // 👉 Add 'success'
     }
 
     // ➡️ Check whether the user with this email exists already
     try {
 
-        let userr = await User.findOne({email: req.body.email})
+        let userr = await User.findOne({success, email: req.body.email})          // 👉 Add 'success'
         if(userr){
-            return res.status(400).json({error: "Sorry a use with this email already exists"})
+            return res.status(400).json({success, error: "Sorry a use with this email already exists"})    // 👉 Add 'success'
         }
 
 
@@ -55,7 +57,8 @@ router.post('/createuser',[          //  Add this array...
 
         const jwtData = jwt.sign({id: userr._id}, JWT_SECRET)
         // console.log(jwtData)
-        res.json({authToken: jwtData})
+        success = true               // 👉 Add this
+        res.json({success, authToken: jwtData})           // 👉 Add 'success'
     }
     catch (error) {
         console.log(error.message)
@@ -69,7 +72,7 @@ router.post('/login', [          //  Add this array...
         body('password', 'Password cannnot be blank').exists(),
     ],  async (req, res)=> {
 
-    let success = false
+    let success = false                   // 👉 Add This
 
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
