@@ -1,39 +1,39 @@
-import React, { useContext, useEffect, useRef, useState} from 'react'          // 👉 Add 'useRef', 'useState'
+import React, { useContext, useEffect, useRef, useState} from 'react'          //  Add 'useRef', 'useState'
 import noteContext from "../context/notes/noteContext"
 import NoteItem from "./NoteItem"
 import AddNote from './AddNote'
 
 
 const Notes = () => {
-  const [note, setNote] = useState({etitle:"", edescription:"", etag:""})        // 👉 ADD,   aigulo uporei defined korte hobe...
+  const [note, setNote] = useState({id: "", etitle:"", edescription:"", etag:""})        //  ADD,   aigulo uporei defined korte hobe...
 
   const context = useContext(noteContext)
-  const { notes, addNote, getNotes } = context;
+  const { notes, addNote, getNotes, editNote } = context;        // 👉 Pull 'editNote' 
 
   useEffect(() => {
     getNotes()
   }, [])
 
 
-  // 👉 ADD
+  //  ADD
   const updateNote = (currentNote) => {
     // ref.toogle()
-    ref.current.click()         // 👉 Atar sahajje oi 'Live' demo
+    ref.current.click()         // Atar sahajje oi 'Live' demo
     // setNote(currentNote)
-    setNote({etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag})
+    setNote({id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag})
   }
 
   
-  // 👉 ADD
   const ref = useRef(null)
+  const refClose = useRef(null)               // 👉 Add
 
-  // 👉 Add
-  const handleClick = (e) => {
+  // 👉 Changes
+  const handleClick = (e) => {                 
     console.log("Updating the note...", note)
-    e.preventDefault()
+    editNote(note.id, note.etitle, note.edescription, note.etag)
+    refClose.current.click()
   }
 
-  // 👉 Add
   const onChange = (e) => {
       setNote({...note, [e.target.name]: e.target.value })
   }
@@ -43,7 +43,7 @@ const Notes = () => {
     <>
       <AddNote />
 
-      <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">           {/* 👉 Add 'ref'... 'd-none' --> 'display none', ai button a click korlei oi modal window ta khule jabe... */}
+      <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">           {/*  Add 'ref'... 'd-none' --> 'display none', ai button a click korlei oi modal window ta khule jabe... */}
         Launch demo modal
       </button>
 
@@ -56,7 +56,7 @@ const Notes = () => {
             </div>
             <div className="modal-body">
 
-              {/* 👉 Add 'AddNote' form */}
+              {/* ➡️ Add 'AddNote' form */}
               <form className='my-3'>
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label">Title</label>
@@ -74,8 +74,8 @@ const Notes = () => {
 
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button onClick={handleClick} type="button" className="btn btn-primary">Update Note</button>    {/* 👉 Add 'onclick' */}
+              <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button onClick={handleClick} type="button" className="btn btn-primary">Update Note</button>    {/* Add 'onclick' */}
             </div>
           </div>
         </div>
@@ -84,7 +84,7 @@ const Notes = () => {
         <h2>Your Notes</h2>
         {notes.map((note) => {
           // return note.title;
-          return <NoteItem key={note._id} note={note} updateNote={updateNote} />       // 👉 Add 'updateNote'
+          return <NoteItem key={note._id} note={note} updateNote={updateNote} />       //  Add 'updateNote'
         })}
       </div>
     </>

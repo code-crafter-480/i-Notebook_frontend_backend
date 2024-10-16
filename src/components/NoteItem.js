@@ -3,7 +3,7 @@ import noteContext from "../context/notes/noteContext"
 
 
 const NoteItem = (props) => {
-    const {note, updateNote} = props;         // 👉 Access 'updateNote'
+    const {note, updateNote} = props;         //  Access 'updateNote'
 
     const context = useContext(noteContext)      // Add          
     const {deleteNote} = context;               //  Add

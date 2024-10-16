@@ -82,7 +82,6 @@ const NoteState = (props) => {
     }
 
 
-            //  Add
     // ➡️ Add a Note :
     const addNote = async(title, description, tag) => {
       // ➡️ API Call          // Add in #65
@@ -95,7 +94,7 @@ const NoteState = (props) => {
           },
           body: JSON.stringify({title, description, tag})
         })
-        const json = response.json()
+        const json = await response.json()
         console.log(json)
 
       console.log("Adding a new note")
@@ -117,7 +116,7 @@ const NoteState = (props) => {
     // ➡️ Delete a Note :       // #64
     const deleteNote = async(id) => {
 
-      // 👉 API CALL 
+      //  API CALL 
       const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
         method: 'DELETE',              
         headers: {
@@ -153,15 +152,18 @@ const NoteState = (props) => {
       const json = response.json()
     
 
-      // Logic to edit in client
-      for (let index = 0; index < notes.length; index++) {
+      // Logic to edit in client-side           // 👉 Edit this logic in #67(because edit korar por 'Update Note' korle direct show kor6e na, akbar page take reload korle tarpor changes ta show kor6e...  ) ...  React a amra direct aivabe state change korte pari na, aijonno new Notes banate hobe...
+      let newNotes = JSON.parse(JSON.stringify(notes))
+      for (let index = 0; index < newNotes.length; index++) {
         const element = notes[index]
         if(element._id === id){
-          element.title = title
-          element.description = description
-          element.tag = tag
+          newNotes[index].title = title
+          newNotes[index].description = description
+          newNotes[index].tag = tag
+          break
         }
       }
+      setNotes(newNotes)
     }
   
     
