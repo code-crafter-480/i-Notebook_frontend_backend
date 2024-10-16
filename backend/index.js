@@ -1,6 +1,6 @@
 const connectToMongo = require('./db')
 const express = require('express')
-var cors = require("cors")          // 👉 Add this in #65
+const cors = require("cors")          // 👉 Add this in #65
 
 connectToMongo()
 

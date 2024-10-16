@@ -4,7 +4,7 @@ import NoteContext from "./noteContext";
 const NoteState = (props) => {
     const host = "http://localhost:5000"
 
-    //  👉 This will remove in #65 and create original fetch API...
+    //  ➡️ This will remove in #65 and create original fetch API...
     /*const notesInitial = [              // This is bring from 'Fetch All Notes'...
         {
           "_id": "67058f9ac50bd0g576ca7792b",
@@ -67,13 +67,12 @@ const NoteState = (props) => {
 
 
 
-    // 👉 Get all Notes
+    // ➡️ Get all Notes :
     const getNotes = async() => {
       // API call
       const response = await fetch(`${host}/api/notes/fetchallnotes`, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json' ,
           'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwNGY4OWE3Mzk3YWJjOTZhYTFkMjAzIn0sImlhdCI6MTcyODQxNDEwM30.FHfr1xH92ubrTm6HrnJmMYefBZTvgjEqVyxamQJ8YDw'
         },
       })
@@ -83,11 +82,10 @@ const NoteState = (props) => {
     }
 
 
-            // 👉 Add
-    // ➡️ Add a Note
+            //  Add
+    // ➡️ Add a Note :
     const addNote = async(title, description, tag) => {
-
-      // ➡️ API Call          // 👉 Add in #65
+      // ➡️ API Call          // Add in #65
       // const response = await fetch(url, {
         const response = await fetch(`${host}/api/notes/addnote`, {
           method: 'POST',
@@ -97,6 +95,8 @@ const NoteState = (props) => {
           },
           body: JSON.stringify({title, description, tag})
         })
+        const json = response.json()
+        console.log(json)
 
       console.log("Adding a new note")
       const note = {
@@ -114,9 +114,21 @@ const NoteState = (props) => {
 
 
 
-    // ➡️ Delete a Note   // #64
-      // TODO : API CALL
-    const deleteNote = (id) => {
+    // ➡️ Delete a Note :       // #64
+    const deleteNote = async(id) => {
+
+      // 👉 API CALL 
+      const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+        method: 'DELETE',              
+        headers: {
+          'Content-Type': 'application/json' ,
+          'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwNGY4OWE3Mzk3YWJjOTZhYTFkMjAzIn0sImlhdCI6MTcyODQxNDEwM30.FHfr1xH92ubrTm6HrnJmMYefBZTvgjEqVyxamQJ8YDw'
+        },
+      })
+      const json = response.json()
+      console.log(json)
+
+
       console.log("Deleting the note with id" + id)
       const newNotes = notes.filter( ( note ) => { return note._id !== id } )
       setNotes(newNotes)
@@ -125,19 +137,18 @@ const NoteState = (props) => {
 
 
     
-    // 👉 Edit a Note
+    // ➡️ Edit a Note :
     const editNote = async (id, title, description, tag) => {
-
       // ➡️ API Call
       // const response = await fetch(url, {
       const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
-        method: 'POST',              // 📌 API te ata PUT a6e...
+        method: 'PUT',              // 📌 API te ata PUT a6e...
         headers: {
           'Content-Type': 'application/json' ,
           'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwNGY4OWE3Mzk3YWJjOTZhYTFkMjAzIn0sImlhdCI6MTcyODQxNDEwM30.FHfr1xH92ubrTm6HrnJmMYefBZTvgjEqVyxamQJ8YDw'
         },
-        body: JSON.stringify(data)       // 📌📌📌 'data' may present a problem in the future...
-        // body: JSON.stringify({title, description, tag})       // 📌📌📌 'data' may present a problem in the future...
+        // body: JSON.stringify(data)       // 📌📌📌 'data' may present a problem in the future...
+        body: JSON.stringify({title, description, tag})       // 📌📌📌 'data' may present a problem in the future...
       })
       const json = response.json()
     
@@ -155,7 +166,7 @@ const NoteState = (props) => {
   
     
     return (
-        <NoteContext.Provider value={{notes, addNote, deleteNote, editNote, getNotes }}>    {/* 👉 Edit here */}        
+        <NoteContext.Provider value={{notes, addNote, deleteNote, editNote, getNotes }}>    {/*  Edit here */}        
             {props.children}
         </NoteContext.Provider>
     )
