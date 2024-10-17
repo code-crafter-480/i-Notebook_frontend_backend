@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const Signup = (props) => {
 
 
   const [credentials, setCredentials] = useState({name:"", email:"", password:"", cpassword:""})
@@ -35,9 +35,12 @@ const Signup = () => {
 
         // Redirect korar jonno useHistory hook er sahajjo nebo...
         navigate("/")
+      props.showAlert("Account Created Successfully.", "success")          // 👉 Add 'showAlert' #71...
+
     }
     else {
-      setError("Invalid credentials!");  // Display error if signup fails
+      // setError("Invalid credentials!");  // Display error if signup fails  
+      props.showAlert("Invalid credentials!", "danger")  // Display error if signup fails        // 👉 Add 'showAlert' #71...
     }
 }
 

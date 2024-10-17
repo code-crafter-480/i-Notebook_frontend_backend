@@ -4,7 +4,7 @@ import NoteItem from "./NoteItem"
 import AddNote from './AddNote'
 
 
-const Notes = () => {
+const Notes = (props) => {
   const [note, setNote] = useState({id: "", etitle:"", edescription:"", etag:""})        //  ADD,   aigulo uporei defined korte hobe...
 
   const context = useContext(noteContext)
@@ -21,6 +21,7 @@ const Notes = () => {
     ref.current.click()         // Atar sahajje oi 'Live' demo
     // setNote(currentNote)
     setNote({id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag})
+
   }
 
   
@@ -32,6 +33,8 @@ const Notes = () => {
     console.log("Updating the note...", note)
     editNote(note.id, note.etitle, note.edescription, note.etag)
     refClose.current.click()
+    props.showAlert("Updated Successfully.", "success")          // 👉 Add 'showAlert' #71...
+
   }
 
   const onChange = (e) => {
@@ -41,7 +44,7 @@ const Notes = () => {
 
   return (
     <>
-      <AddNote />
+      <AddNote  showAlert={props.showAlert} />         {/* 👉 Add 'showAlert' #71 */}
 
       <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">           {/*  Add 'ref'... 'd-none' --> 'display none', ai button a click korlei oi modal window ta khule jabe... */}
         Launch demo modal
@@ -87,7 +90,7 @@ const Notes = () => {
         </div>
         {notes.map((note) => {
           // return note.title;
-          return <NoteItem key={note._id} note={note} updateNote={updateNote} />       //  Add 'updateNote'
+          return <NoteItem key={note._id} note={note} updateNote={updateNote}  showAlert={props.showAlert} />       //  Add 'updateNote'
         })}
       </div>
     </>
