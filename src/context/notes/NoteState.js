@@ -73,7 +73,8 @@ const NoteState = (props) => {
       const response = await fetch(`${host}/api/notes/fetchallnotes`, {
         method: 'GET',
         headers: {
-          'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwNGY4OWE3Mzk3YWJjOTZhYTFkMjAzIn0sImlhdCI6MTcyODQxNDEwM30.FHfr1xH92ubrTm6HrnJmMYefBZTvgjEqVyxamQJ8YDw'
+          // 'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwNGY4OWE3Mzk3YWJjOTZhYTFkMjAzIn0sImlhdCI6MTcyODQxNDEwM30.FHfr1xH92ubrTm6HrnJmMYefBZTvgjEqVyxamQJ8YDw'
+          'auth-token' : localStorage.getItem('token')            // 👉 ADD  #72
         },
       })
       const json = await response.json()
@@ -90,7 +91,8 @@ const NoteState = (props) => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json' ,
-            'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwNGY4OWE3Mzk3YWJjOTZhYTFkMjAzIn0sImlhdCI6MTcyODQxNDEwM30.FHfr1xH92ubrTm6HrnJmMYefBZTvgjEqVyxamQJ8YDw'
+            // 'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwNGY4OWE3Mzk3YWJjOTZhYTFkMjAzIn0sImlhdCI6MTcyODQxNDEwM30.FHfr1xH92ubrTm6HrnJmMYefBZTvgjEqVyxamQJ8YDw'
+          'auth-token' : localStorage.getItem('token')            // 👉 ADD  #72
           },
           body: JSON.stringify({title, description, tag})
         })
@@ -121,7 +123,9 @@ const NoteState = (props) => {
         method: 'DELETE',              
         headers: {
           'Content-Type': 'application/json' ,
-          'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwNGY4OWE3Mzk3YWJjOTZhYTFkMjAzIn0sImlhdCI6MTcyODQxNDEwM30.FHfr1xH92ubrTm6HrnJmMYefBZTvgjEqVyxamQJ8YDw'
+          // 'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwNGY4OWE3Mzk3YWJjOTZhYTFkMjAzIn0sImlhdCI6MTcyODQxNDEwM30.FHfr1xH92ubrTm6HrnJmMYefBZTvgjEqVyxamQJ8YDw'
+          'auth-token' : localStorage.getItem('token')            // 👉 ADD  #72
+
         },
       })
       const json = response.json()
@@ -144,7 +148,9 @@ const NoteState = (props) => {
         method: 'PUT',              
         headers: {
           'Content-Type': 'application/json' ,
-          'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwNGY4OWE3Mzk3YWJjOTZhYTFkMjAzIn0sImlhdCI6MTcyODQxNDEwM30.FHfr1xH92ubrTm6HrnJmMYefBZTvgjEqVyxamQJ8YDw'
+          // 'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwNGY4OWE3Mzk3YWJjOTZhYTFkMjAzIn0sImlhdCI6MTcyODQxNDEwM30.FHfr1xH92ubrTm6HrnJmMYefBZTvgjEqVyxamQJ8YDw'
+          'auth-token' : localStorage.getItem('token')            // 👉 ADD  #72
+
         },
         // body: JSON.stringify(data)       // 📌📌📌 'data' may present a problem in the future...
         body: JSON.stringify({title, description, tag})       // 📌📌📌 'data' may present a problem in the future...

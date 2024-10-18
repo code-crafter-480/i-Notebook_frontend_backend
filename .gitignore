@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 explain.txt
+css
 
 # testing
 /coverage

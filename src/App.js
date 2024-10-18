@@ -31,7 +31,7 @@ function App() {
   
   return (
     <>
-    <NoteState>
+    <NoteState >
       <Router>
         <Navbar />
         {/* <Alert message={"This is amazing"} />            Add this #62 */}
